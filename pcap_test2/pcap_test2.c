@@ -156,4 +156,3 @@ void hostprint(u_char * td,int ll) //호스트부분을 출력해주는 함수
 
 //http://forum.falinux.com/zbxe/index.php?document_srl=433962&mid=C_LIB
 
-
