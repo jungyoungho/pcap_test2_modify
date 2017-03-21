@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 
     struct bpf_program fp; //패킷에 대한 필터를 만들어주는구조체
 
-    if(pcap_compile(pcd, &fp, argv[2], 0, netp)==-1) //-- start here
+    if(pcap_compile(pcd, &fp, argv[2], 0, netp)==-1)
     {
         printf("compile error\n");
         return -1;
@@ -125,7 +125,6 @@ void call(u_char *none, const struct pcap_pkthdr *pkthdr, const u_char *packet)
 
         packet += sizeof(struct ether_header);
         iph = (struct ip *)((u_int8_t *)ep+sizeof(struct ether_header));
-        //iph = (struct ip *)packet;
         printf("*************IP Address Information************* \n");
         printf("Version     : %d\n", iph->ip_v);
         inet_ntop(AF_INET, &(iph->ip_src), ipsize ,32);   //src address 32bit
