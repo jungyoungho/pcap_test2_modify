@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console
+CONFIG += console c++ll
 CONFIG -= app_bundle
 CONFIG -= qt
 LIBS += -lpcap
