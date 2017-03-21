@@ -20,9 +20,8 @@ int main(int argc, char *argv[])
 {
     char *dev = argv[1];          //argv[0]은 파일명이므로
     char errbuf[PCAP_ERRBUF_SIZE];
-    struct in_addr net_addr, mask_addr;
-    bpf_u_int32 maskp;
-    bpf_u_int32 netp;
+    
+
 
     if(argc != 3)  //you must get 3 parameters
     {
@@ -31,8 +30,9 @@ int main(int argc, char *argv[])
     }
     printf("DEV = %s\n",dev);
     int ret;
-
-
+    struct in_addr net_addr, mask_addr;
+    bpf_u_int32 maskp;
+    bpf_u_int32 netp;
     net_addr.s_addr  = netp;
     mask_addr.s_addr = maskp;
     ret=pcap_lookupnet(dev,&netp, &maskp, errbuf);
@@ -103,7 +103,6 @@ int main(int argc, char *argv[])
 void call(u_char *none, const struct pcap_pkthdr *pkthdr, const u_char *packet)
    {
     (void)*none;
-
     unsigned short ether_type;
     int length=pkthdr->len;
     struct ether_header *ep = (struct ether_header *)packet;
@@ -117,7 +116,6 @@ void call(u_char *none, const struct pcap_pkthdr *pkthdr, const u_char *packet)
     printmac(ep->ether_shost);
     printf("Drc MAC = ");
     printmac(ep->ether_dhost);
-
     ether_type = ntohs(ep->ether_type);
 
     struct ip *iph;
@@ -147,8 +145,8 @@ void call(u_char *none, const struct pcap_pkthdr *pkthdr, const u_char *packet)
             tcpdata =(u_char *)(packet + (tcph->th_off * 4));
             printf("===============================================\n");
 
+            
             int tdlength=length-sizeof(tcpdata);
-
             hostprint(tcpdata,tdlength);
 
             printf("\n");
